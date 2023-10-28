@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PIMTool.Database;
 
@@ -11,9 +12,10 @@ using PIMTool.Database;
 namespace PIMTool.Migrations
 {
     [DbContext(typeof(PimContext))]
-    partial class PimContextModelSnapshot : ModelSnapshot
+    [Migration("20231027101358_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,22 +27,31 @@ namespace PIMTool.Migrations
             modelBuilder.Entity("PIMTool.Database.Employee", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("Version")
                         .HasColumnType("int");
 
                     b.Property<string>("Visa")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(3)
+                        .HasColumnType("nvarchar(3)");
 
                     b.HasKey("Id");
 
@@ -48,14 +59,12 @@ namespace PIMTool.Migrations
                 });
 
             modelBuilder.Entity("PIMTool.Database.Group", b =>
-
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
 
                     b.Property<int>("GroupLeaderId")
                         .HasColumnType("int");
@@ -65,9 +74,7 @@ namespace PIMTool.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GroupLeaderId")
-                        .IsUnique();
-
+                    b.HasIndex("GroupLeaderId");
 
                     b.ToTable("Groups");
                 });
@@ -75,11 +82,15 @@ namespace PIMTool.Migrations
             modelBuilder.Entity("PIMTool.Database.Project", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Customer")
-                        .HasColumnType("nvarchar(max)");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<string>("Customer")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime?>("EndDate")
                         .HasColumnType("datetime2");
@@ -88,8 +99,9 @@ namespace PIMTool.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("ProjectNumber")
                         .HasColumnType("int");
@@ -98,8 +110,9 @@ namespace PIMTool.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
-
+                        .IsRequired()
+                        .HasMaxLength(3)
+                        .HasColumnType("nvarchar(3)");
 
                     b.Property<int>("Version")
                         .HasColumnType("int");
@@ -129,9 +142,8 @@ namespace PIMTool.Migrations
             modelBuilder.Entity("PIMTool.Database.Group", b =>
                 {
                     b.HasOne("PIMTool.Database.Employee", "GroupLeader")
-                        .WithOne("Group")
-                        .HasForeignKey("PIMTool.Database.Group", "GroupLeaderId")
-
+                        .WithMany()
+                        .HasForeignKey("GroupLeaderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -154,15 +166,13 @@ namespace PIMTool.Migrations
                     b.HasOne("PIMTool.Database.Employee", "Employee")
                         .WithMany("ProjectEmployees")
                         .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Restrict)
-
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("PIMTool.Database.Project", "Project")
                         .WithMany("ProjectEmployees")
                         .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Restrict)
-
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Employee");
@@ -172,10 +182,6 @@ namespace PIMTool.Migrations
 
             modelBuilder.Entity("PIMTool.Database.Employee", b =>
                 {
-                    b.Navigation("Group")
-                        .IsRequired();
-
-
                     b.Navigation("ProjectEmployees");
                 });
 

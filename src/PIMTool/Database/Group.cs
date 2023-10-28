@@ -7,6 +7,7 @@ namespace PIMTool.Database
     {
         //[Key]
         //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+
         public int Id { get; set; }
 
         public int Version { get; set; }

@@ -16,6 +16,7 @@ namespace PIMTool.Database
         public DateTime StartDate { get; set; }
         public DateTime? EndDate { get; set; }
 
+
         public int Version { get; set; }
 
         public int GroupId { get; set; }
@@ -23,6 +24,7 @@ namespace PIMTool.Database
         public Group? Group { get; set; }
 
         public ICollection<ProjectEmployee>? ProjectEmployees { get; set; }
+
 
     }
 }

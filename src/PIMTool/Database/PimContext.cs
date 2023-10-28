@@ -16,6 +16,7 @@ namespace PIMTool.Database
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
+
         {
 
             modelBuilder.Entity<Project>()
@@ -56,6 +57,7 @@ namespace PIMTool.Database
               .OnDelete(DeleteBehavior.Restrict);
 
         }
+
 
     }
 }

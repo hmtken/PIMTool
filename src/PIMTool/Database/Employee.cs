@@ -23,5 +23,6 @@ namespace PIMTool.Database
 
         public Group Group { get; set; }
 
+
     }
 }
