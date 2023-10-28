@@ -17,7 +17,8 @@ namespace PIMTool.Database
 
         public DateTime BirthDate { get; set; }
 
-        public int Version { get; set; }
+        [Timestamp]
+        public byte[] Version { get; set; }
 
         public ICollection<ProjectEmployee>? ProjectEmployees { get; set; }
 
