@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PIMTool.Database;
 
@@ -11,9 +12,10 @@ using PIMTool.Database;
 namespace PIMTool.Migrations
 {
     [DbContext(typeof(PimContext))]
-    partial class PimContextModelSnapshot : ModelSnapshot
+    [Migration("20231027120340_test")]
+    partial class test
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,14 +50,12 @@ namespace PIMTool.Migrations
                 });
 
             modelBuilder.Entity("PIMTool.Database.Group", b =>
-
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
 
                     b.Property<int>("GroupLeaderId")
                         .HasColumnType("int");
@@ -68,7 +68,6 @@ namespace PIMTool.Migrations
                     b.HasIndex("GroupLeaderId")
                         .IsUnique();
 
-
                     b.ToTable("Groups");
                 });
 
@@ -80,7 +79,6 @@ namespace PIMTool.Migrations
                     b.Property<string>("Customer")
                         .HasColumnType("nvarchar(max)");
 
-
                     b.Property<DateTime?>("EndDate")
                         .HasColumnType("datetime2");
 
@@ -90,7 +88,6 @@ namespace PIMTool.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-
                     b.Property<int>("ProjectNumber")
                         .HasColumnType("int");
 
@@ -99,7 +96,6 @@ namespace PIMTool.Migrations
 
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
-
 
                     b.Property<int>("Version")
                         .HasColumnType("int");
@@ -131,7 +127,6 @@ namespace PIMTool.Migrations
                     b.HasOne("PIMTool.Database.Employee", "GroupLeader")
                         .WithOne("Group")
                         .HasForeignKey("PIMTool.Database.Group", "GroupLeaderId")
-
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -155,14 +150,12 @@ namespace PIMTool.Migrations
                         .WithMany("ProjectEmployees")
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Restrict)
-
                         .IsRequired();
 
                     b.HasOne("PIMTool.Database.Project", "Project")
                         .WithMany("ProjectEmployees")
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Restrict)
-
                         .IsRequired();
 
                     b.Navigation("Employee");
@@ -174,7 +167,6 @@ namespace PIMTool.Migrations
                 {
                     b.Navigation("Group")
                         .IsRequired();
-
 
                     b.Navigation("ProjectEmployees");
                 });

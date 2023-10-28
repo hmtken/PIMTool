@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PIMTool", "PIMTool\PIMTool.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PIMTool.Test", "PIMTool.Test\PIMTool.Test.csproj", "{8AC59389-6433-457D-9834-1602022BE60A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PIMTool.Core", "PIMTool.Core\PIMTool.Core.csproj", "{1FC7EBE7-058B-4B79-954D-DED33D64687F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PIMTool.Core", "PIMTool.Core\PIMTool.Core.csproj", "{1FC7EBE7-058B-4B79-954D-DED33D64687F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PIMToolAPI", "PIMToolAPI\PIMToolAPI.csproj", "{EE2ACB96-5F93-41A9-8B18-9B74CE177BDC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{1FC7EBE7-058B-4B79-954D-DED33D64687F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FC7EBE7-058B-4B79-954D-DED33D64687F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FC7EBE7-058B-4B79-954D-DED33D64687F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE2ACB96-5F93-41A9-8B18-9B74CE177BDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE2ACB96-5F93-41A9-8B18-9B74CE177BDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE2ACB96-5F93-41A9-8B18-9B74CE177BDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE2ACB96-5F93-41A9-8B18-9B74CE177BDC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
