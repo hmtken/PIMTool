@@ -10,7 +10,8 @@ namespace PIMTool.Database
 
         public int Id { get; set; }
 
-        public int Version { get; set; }
+        [Timestamp]
+        public byte[] Version { get; set; }
 
         [ForeignKey("GroupLeaderId")]
         public int GroupLeaderId { get; set; }
